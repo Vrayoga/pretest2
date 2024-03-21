@@ -1,0 +1,39 @@
+<%- include("../partials/head.ejs") %>
+
+    <div class="m-auto mw-510 py-5">
+        <form action="/log" method="POST">
+            <div class="d-flex align-items-center gap-4 mb-3">
+                <h4 class="fs-3 mb-0">Get’s started.</h4>
+                <a href="index.html">
+                    <img src="/admin/assets/images/logo.svg" alt="logo">
+                </a>
+            </div>
+            <p class="fs-18 mb-5">Don’t have an account? <a href="/register"
+                    class="text-decoration-none text-primary">Register</a></p>
+
+            <div class="card bg-white border-0 rounded-10 mb-4">
+                <div class="card-body p-4">
+                    <div class="form-group mb-4">
+                        <label class="label">Email</label>
+                        <input type="email" name="email" class="form-control h-58" placeholder="envytheme@info.com">
+                    </div>
+                    <div class="form-group mb-0">
+                        <label class="label">Password</label>
+                        <div class="form-group">
+                            <div class="password-wrapper position-relative">
+                                <input type="password" name="password" id="password"
+                                    class="form-control h-58 text-dark">
+                                <i style="color: #A9A9C8; font-size: 16px; right: 15px !important;"
+                                    class="ri-eye-off-line password-toggle-icon translate-middle-y top-50 end-0 position-absolute"
+                                    aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit"
+                class="btn btn-primary fs-16 fw-semibold text-dark heading-fornt py-2 py-md-3 px-4 text-white w-100">save</button>
+        </form>
+    </div>
+
+    <%- include("../partials/kaki.ejs") %>

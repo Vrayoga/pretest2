@@ -1,94 +1,121 @@
-<!doctype html>
-<html lang="en">
+<%- include("../partials/head.ejs") %>
+    <%- include("../partials/sidebar.ejs") %>
+        <%- include("../partials/header.ejs") %>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <style>
-        /* Custom CSS untuk menambahkan padding pada body */
 
-        /* Custom CSS untuk menambahkan padding pada tabel */
-        .table {
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
 
-<body>
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="card bg-white border-0 rounded-10 mb-4">
+                        <div class="d-flex  align-items-center bg-body justify-content-between ">
+                            <h5 class="ms-5">Table Alat Tangkap</h1>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Alat tangkap App</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../alat_tangkap">alat tangkap</a>
-                    <!-- </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./kategori/">kategori</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../pendidikan/">pendidikan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../keahlian/">keahlian</a>
-                    </li> -->
-                </ul>
+                                <button type="button" class="btn btn-primary text-white me-5" data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Tambah
+                                </button>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="preview-tab-pane" role="tabpanel"
+                            aria-labelledby="preview-tab" tabindex="0">
+                            <div class="default-table-area members-list">
+                                <div class="table-responsive">
+                                    <table class="table align-middle" id="myTable">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">No</th>
+                                                <th scope="col">Nama alat</th>
+                                                <th scope="col">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for(var i=0; i < data.length; i++) { %>
+                                                <tr>
+                                                    <td>
+                                                        <%= (i+1) %>
+                                                    </td>
+
+                                                    <td>
+                                                        <a href="">
+                                                            <%= data[i].nama_alat %>
+                                                        </a>
+                                                    </td>
+
+                                                    <td>
+                                                        <div class="dropdown action-opt">
+                                                            <button class="btn bg p-0" type="button"
+                                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i data-feather="more-horizontal"></i>
+                                                            </button>
+                                                            <ul
+                                                                class="dropdown-menu dropdown-menu-end bg-white border box-shadow">
+
+                                                                <li>
+                                                                    <a class="dropdown-item"
+                                                                        href="/alat_tangkap/edit/<%= data[i].id_alat %>">
+                                                                        <i data-feather="edit-3"></i>
+                                                                        Rename
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item"
+                                                                        href="/alat_tangkap/delete/<%= data[i].id_alat %>">
+                                                                        <i data-feather="trash-2"></i>
+                                                                        Remove
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <% } %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </nav>
 
 
-    <div class="container">
-        <% if (messages.success) { %>
-        <div class="alert alert-info" role="alert">
-            <%= messages.success %>
-        </div>
-        <% } %>
+            <div class="offcanvas offcanvas-end bg-white" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1"
+                id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel"
+                style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+                <div class="offcanvas-header bg-body-bg py-3 px-4 mb-4">
+                    <h5 class="offcanvas-title fs-18" id="offcanvasScrollingLabel">Tambah Alat</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body px-4">
+                    <!-- awal -->
 
-        <div class="row">
-            <div class="col">
-                <a href="/alat_tangkap/create" class="btn btn-sm btn-success mb-3">Tambah</a> <!-- Menambahkan margin bottom untuk button -->
-                <table class="table table-striped table-bordered"> <!-- Menambahkan kelas table-striped dan table-bordered -->
-                    <thead class="table-dark"> <!-- Menambahkan kelas table-dark untuk background header -->
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nama alat</th>
-                            <th colspan="2" scope="col">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for(var i = 0; i < data.length; i++) { %>
-                        <tr>
-                            <th scope="row"><%= (i+1) %></th>
-                            <td><%= data[i].nama_alat %></td>
-                            <td>
-                                <a href="/alat_tangkap/edit/<%= data[i].id_alat %>"
-                                    class="btn btn-sm btn-warning">Edit</a>
-                            </td>
-                            <td>
-                                <a href="/alat_tangkap/delete/<%= data[i].id_alat %>"
-                                    class="btn btn-sm btn-danger">Delete</a>
-                            </td>
-                        </tr>
-                        <% } %>
-                    </tbody>
-                </table>
+                    <form action="/alat_tangkap/store" method="POST">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group mb-4">
+                                    <label class="label">Nama Alat</label>
+                                    <div class="form-group position-relative">
+                                        <input type="text" name="nama_alat" id="nama_alat"
+                                            class="form-control text-dark ps-5 h-58" placeholder="Masukkan Nama Alat">
+                                        <i
+                                            class="ri-user-line position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success">simpan</button>
+                    </form>
+
+                    <!-- akhir -->
+                </div>
             </div>
-        </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
-</body>
 
-</html>
+
+            </div>
+            </div>
+
+            </div>
+            </div>
+
+            <%- include("../partials/kaki.ejs") %>
