@@ -1,7 +1,7 @@
 <%- include("../partials/head.ejs") %>
 
     <div class="m-auto mw-510 py-5">
-        <form action="/log" method="POST">
+        <form action="/saveusers" method="POST">
             <div class="d-flex align-items-center gap-4 mb-3">
                 <h4 class="fs-3 mb-0">Get’s started.</h4>
                 <a href="index.html">
@@ -15,7 +15,8 @@
                 <div class="card-body p-4">
                     <div class="form-group mb-4">
                         <label class="label">Email</label>
-                        <input type="email" name="email" class="form-control h-58" placeholder="envytheme@info.com">
+                        <input autocomplete="off" type="email" name="email" class="form-control h-58"
+                            placeholder="envytheme@info.com">
                     </div>
                     <div class="form-group mb-0">
                         <label class="label">Password</label>
@@ -32,7 +33,7 @@
                 </div>
             </div>
             <button type="submit"
-                class="btn btn-primary fs-16 fw-semibold text-dark heading-fornt py-2 py-md-3 px-4 text-white w-100">save</button>
+                class="btn btn-primary fs-16 fw-semibold text-dark heading-fornt py-2 py-md-3 px-4 text-white w-100">Register</button>
         </form>
     </div>
 

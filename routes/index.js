@@ -37,18 +37,31 @@ router.post('/log', async (req, res) =>{
       let cek = await bcrypt.compare(password, enkripsi);
       if (cek){
         req.session.userId = Data[0].id_users;
-        req.flash('success', 'berhasil login');
-        res.redirect('/users');
+        if(Data[0].level_users == 1){
+          req.flash('success', 'berhasil login');
+        res.redirect('/superusers');
+        }else if(Data[0].level_users == 2){
+          req.flash('success', 'berhasil login');
+          res.redirect('/users');
+        } else{
+          res.redirect('/login');
+        }
       }else{
-        res.send("error");
+        // res.send("error");
+        req.flash('success','berhasil login');
+        res.redirect('/login');
       }
     }else{
-      res.send("cok");
+      // res.send("gagal");
+      req.flash('success','akun tidak ditemukan');
+      res.redirect('/login');
     }
   }catch (err){
-    res.send(err);
+    // res.send(err);
+    req.flash('/login');
+      res.redirect('error','error pada fungsi');
   }
-})
+});
 
 router.get ('/logout', function(req, res){
   req.session.destroy(function(err){
